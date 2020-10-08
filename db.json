@@ -1,0 +1,330 @@
+{
+  "dialogs": [
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Ex cillum amet irure et minim veniam.",
+      "date": "Mon Nov 18 1996 04:35:18 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "845f7b29c68e0c0e838cfcb43e",
+        "fullname": "Malone Chandler",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "845f7b29c6d7d41afe3fcd5e23",
+      "text": "Nostrud amet duis nostrud nisi fugiat aliquip dolor Lorem.",
+      "date": "Wed Jun 09 2010 20:12:56 GMT+0600 (Восточный Казахстан)",
+      "isReaded": true,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "135f7b29c60902cb45854c33a8",
+        "fullname": "Oneil Saunders",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": true
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "365f7b29c616e6f9b2931401b7",
+      "text": "Voluptate cupidatat ut occaecat ullamco tempor commodo sunt eiusmod mollit ipsum voluptate do incididunt.",
+      "date": "Wed Mar 29 1972 07:16:49 GMT+0600 (Восточный Казахстан)",
+      "isReaded": true,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "885f7b29c6e873ba802cc27ca9",
+        "fullname": "Barry Caldwell",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "025f7b29c68c2ccf9317267a67",
+      "text": "Sint nisi culpa ut nostrud minim tempor ad adipisicing dolor laborum.",
+      "date": "Fri Jan 24 1992 00:21:31 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "835f7b29c6d990218a99ff9507",
+        "fullname": "Ortega Norton",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "965f7b29c636fb57baa8b2d141",
+      "text": "Dolore ut et aliqua cillum.",
+      "date": "Fri May 17 2019 08:05:50 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "535f7b29c6f156df63cc21e140",
+        "fullname": "Dale Savage",
+        "isOnline": true,
+        "avatar": null,
+        "isMe": true
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "465f7b29c6f8e777fca3022943",
+      "text": "Officia commodo reprehenderit do aliquip.",
+      "date": "Fri Mar 18 1988 03:00:36 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "835f7b29c6abc29e9db444846a",
+        "fullname": "Mcknight Hyde",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "335f7b29c6b8678159218c6e68",
+      "text": "Voluptate ut nisi sit aliqua.",
+      "date": "Fri Apr 03 1998 17:19:50 GMT+0700 (GMT+06:00)",
+      "isReaded": true,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "025f7b29c670dca45ed78e9668",
+        "fullname": "Alyssa Phelps",
+        "isOnline": true,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "165f7b29c6520cdc83437503b3",
+      "text": "Fugiat sunt tempor et nulla magna voluptate dolore culpa voluptate.",
+      "date": "Sat Jan 22 1983 10:33:06 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "415f7b29c68f1a07a7d692067f",
+        "fullname": "Angeline Landry",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "405f7b29c6c1abdb4ab1e8c67b",
+      "text": "Pariatur est officia ex cillum Lorem nisi excepteur commodo enim laborum exercitation ullamco exercitation.",
+      "date": "Fri Oct 01 1999 01:05:08 GMT+0700 (GMT+06:00)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "025f7b29c668bdd6c40362b345",
+        "fullname": "Doyle Ochoa",
+        "isOnline": true,
+        "avatar": null,
+        "isMe": true
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    }
+  ],
+  "messages": [
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": null,
+      "date": "Mon Nov 18 1996 04:35:18 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": "https://s1.muzter.net/files/mp3/tones_and_i_-_dance_monkey_muzter.net_128.mp3",
+      "unreaded": null,
+      "user": {
+        "_id": "845f7b29c68e0c0e838cfcb43e",
+        "fullname": "Malone Chandler",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Nostrud amet duis nostrud nisi fugiat aliquip dolor Lorem.",
+      "date": "Wed Jun 09 2010 20:12:56 GMT+0600 (Восточный Казахстан)",
+      "isReaded": true,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "135f7b29c60902cb45854c33a8",
+        "fullname": "Oneil Saunders",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": true
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Voluptate cupidatat ut occaecat ullamco tempor commodo sunt eiusmod mollit ipsum voluptate do incididunt.",
+      "date": "Wed Mar 29 1972 07:16:49 GMT+0600 (Восточный Казахстан)",
+      "isReaded": true,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "885f7b29c6e873ba802cc27ca9",
+        "fullname": "Barry Caldwell",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Sint nisi culpa ut nostrud minim tempor ad adipisicing dolor laborum.",
+      "date": "Fri Jan 24 1992 00:21:31 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "835f7b29c6d990218a99ff9507",
+        "fullname": "Ortega Norton",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Dolore ut et aliqua cillum.",
+      "date": "Fri May 17 2019 08:05:50 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "535f7b29c6f156df63cc21e140",
+        "fullname": "Dale Savage",
+        "isOnline": true,
+        "avatar": null,
+        "isMe": true
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Officia commodo reprehenderit do aliquip.",
+      "date": "Fri Mar 18 1988 03:00:36 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "835f7b29c6abc29e9db444846a",
+        "fullname": "Mcknight Hyde",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Voluptate ut nisi sit aliqua.",
+      "date": "Fri Apr 03 1998 17:19:50 GMT+0700 (GMT+06:00)",
+      "isReaded": true,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "025f7b29c670dca45ed78e9668",
+        "fullname": "Alyssa Phelps",
+        "isOnline": true,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Fugiat sunt tempor et nulla magna voluptate dolore culpa voluptate.",
+      "date": "Sat Jan 22 1983 10:33:06 GMT+0600 (Восточный Казахстан)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "415f7b29c68f1a07a7d692067f",
+        "fullname": "Angeline Landry",
+        "isOnline": false,
+        "avatar": null,
+        "isMe": false
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    },
+    {
+      "_id": "505f7b29c619f35e78e963795f",
+      "text": "Pariatur est officia ex cillum Lorem nisi excepteur commodo enim laborum exercitation ullamco exercitation.",
+      "date": "Fri Oct 01 1999 01:05:08 GMT+0700 (GMT+06:00)",
+      "isReaded": false,
+      "attachments": null,
+      "isTyping": false,
+      "audio": null,
+      "unreaded": null,
+      "user": {
+        "_id": "025f7b29c668bdd6c40362b345",
+        "fullname": "Doyle Ochoa",
+        "isOnline": true,
+        "avatar": null,
+        "isMe": true
+      },
+      "dialog": "4id505f7b29c619f35e78e963795f"
+    }
+  ]
+}

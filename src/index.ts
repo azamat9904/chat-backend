@@ -1,11 +1,18 @@
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import dotenv from 'dotenv';
 
-import { userRoutes } from "./routes/index";
+import { updateLastSeen, checkAuth } from './midllewares/index';
+import {
+  userRoutes,
+  dialogRoutes,
+  messageRoutes
+} from "./routes/index";
+
 
 const app = express();
-const port = 4200;
+dotenv.config();
 
 mongoose.connect("mongodb://localhost:27017/chat", {
   useNewUrlParser: true,
@@ -15,7 +22,15 @@ mongoose.connect("mongodb://localhost:27017/chat", {
 });
 
 app.use(bodyParser.json());
+app.use(updateLastSeen);
+app.use(checkAuth);
 
 app.use("/users", userRoutes);
+app.use('/dialogs', dialogRoutes);
+app.use('/messages', messageRoutes);
 
-app.listen(port);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log('Server is running on the port ' + port)
+});

@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
 import { UserModel } from "../models/index";
+import createJwtToken from "../utils/createJwtToken";
 
 const show = async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -51,4 +52,32 @@ const getAll = async (req: Request, res: Response) => {
   }
 };
 
-export default { show, createUser, deleteUser, getAll };
+const login = async (req: Request, res: Response) => {
+  const postData = {
+    email: req.body.email,
+    password: req.body.password
+  }
+  try {
+    const user = await UserModel.findOne({ email: postData.email });
+
+    if (user?.password === postData.password) {
+      const token = createJwtToken(postData);
+      return res.json({
+        status: 'success',
+        token
+      });
+    }
+
+    res.json({
+      status: "Error",
+      message: "Incorrect password or email"
+    });
+
+  } catch {
+    res.status(404).json({
+      message: "User is not found"
+    })
+  }
+
+}
+export default { show, createUser, deleteUser, getAll, login };

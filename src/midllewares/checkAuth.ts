@@ -17,6 +17,7 @@ export default async (
     const token: string | null =
         "token" in req.headers ? (req.headers.token as string) : null;
 
+
     if (token) {
         try {
             const user: DecodedData | null = await verifyJwtToken(token);

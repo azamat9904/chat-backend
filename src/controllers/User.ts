@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
 import { UserModel } from "../models/index";
 import createJwtToken from "../utils/createJwtToken";
+import bcrypt from 'bcrypt';
 
 const show = async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -59,8 +60,9 @@ const login = async (req: Request, res: Response) => {
   }
   try {
     const user = await UserModel.findOne({ email: postData.email });
+    const isPasswordCorrect = await bcrypt.compare(postData?.password, user!.password);
 
-    if (user?.password === postData.password) {
+    if (isPasswordCorrect) {
       const token = createJwtToken(postData);
       return res.json({
         status: 'success',

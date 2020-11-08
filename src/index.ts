@@ -11,6 +11,9 @@ const app = express();
 const http = createServer(app);
 const socket = new Socket(http);
 const socketInstance = socket.createInstance();
+socketInstance.on('connection', () => {
+  console.log('connected');
+})
 createRoutes(app, socketInstance);
 
 const port = process.env.PORT || 3000;

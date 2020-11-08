@@ -13,7 +13,7 @@ export default class {
   }
 
 
-  async show(req: Request, res: Response) {
+  show = async (req: Request, res: Response) => {
     const id = req.params.id;
 
     try {
@@ -25,7 +25,7 @@ export default class {
   };
 
 
-  async createUser(req: Request, res: Response) {
+  createUser = async (req: Request, res: Response) => {
     const postData = {
       email: req.body.email,
       fullname: req.body.fullname,
@@ -43,7 +43,7 @@ export default class {
   };
 
 
-  async deleteUser(req: Request, res: Response) {
+  deleteUser = async (req: Request, res: Response) => {
     const id = req.params.id;
     try {
       const user = await UserModel.findByIdAndRemove(id);
@@ -57,7 +57,7 @@ export default class {
   };
 
 
-  async getAll(req: Request, res: Response) {
+  getAll = async (req: Request, res: Response) => {
     try {
       const users = await UserModel.find({});
       res.json(users);
@@ -67,7 +67,7 @@ export default class {
   };
 
 
-  async login(req: Request, res: Response) {
+  login = async (req: Request, res: Response) => {
     const postData = {
       email: req.body.email,
       password: req.body.password
@@ -97,9 +97,8 @@ export default class {
   }
 
 
-  async getMe(req: Request, res: Response) {
+  getMe = async (req: Request, res: Response) => {
     const id = req.user?._id;
-    console.log(req.user)
     try {
       const user = await UserModel.findOne({ _id: id });
       res.json(user);

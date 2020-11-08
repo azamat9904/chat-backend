@@ -11,7 +11,7 @@ export default class {
     this.io = io;
   }
 
-  async getAll(req: Request, res: Response) {
+  getAll = async (req: Request, res: Response) => {
     const userId = req.user;
     try {
       const dialogs = await DialogModel.find({ author: userId }).populate(['author', 'partner']);
@@ -21,7 +21,7 @@ export default class {
     }
   }
 
-  async deleteDialog(req: Request, res: Response) {
+  deleteDialog = async (req: Request, res: Response) => {
     const id = req.params.id;
     try {
       const dialog = await DialogModel.findByIdAndRemove(id);
@@ -34,7 +34,7 @@ export default class {
     }
   }
 
-  async createDialog(req: Request, res: Response) {
+  createDialog = async (req: Request, res: Response) => {
     const postData = {
       author: req.body.author,
       partner: req.body.partner,

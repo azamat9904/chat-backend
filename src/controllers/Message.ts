@@ -12,7 +12,7 @@ export default class {
   }
 
 
-  async getAll(req: Request, res: Response) {
+  getAll = async (req: Request, res: Response) => {
     const dialogId = req.query.dialog;
 
     try {
@@ -24,7 +24,7 @@ export default class {
   };
 
 
-  async createMessage(req: Request, res: Response) {
+  createMessage = async (req: Request, res: Response) => {
     const userId = "5f9862e58c82fb203cc72a84";
 
     const postData = {
@@ -38,13 +38,14 @@ export default class {
     try {
       const createdMessage = await message.save();
       res.json({ message: "Message is successfully created", createdMessage });
+      this.io.emit('NEW:MESSAGE', JSON.stringify(createdMessage));
     } catch (error) {
       res.status(500).json({ message: "Can not create message", error });
     }
   };
 
 
-  async deleteMessage(req: Request, res: Response) {
+  deleteMessage = async (req: Request, res: Response) => {
     const id = req.params.id;
     try {
       const message = await MessageModel.findByIdAndRemove(id);

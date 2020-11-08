@@ -14,6 +14,7 @@ export default class {
 
   getAll = async (req: Request, res: Response) => {
     const dialogId = req.query.dialog;
+    const userId: string = req.user?._id;
 
     try {
       const messages = await MessageModel.find({ dialog: dialogId }).populate(['dialog']);
@@ -37,8 +38,11 @@ export default class {
 
     try {
       const createdMessage = await message.save();
-      res.json({ message: "Message is successfully created", createdMessage });
-      this.io.emit('SERVER:NEW_MESSAGE', createdMessage);
+      createdMessage.populate('dialog', (err: any, populatedMessage: any) => {
+        if (err) throw new Error();
+        res.json({ message: "Message is successfully created", populatedMessage });
+        this.io.emit('SERVER:NEW_MESSAGE', populatedMessage);
+      });
     } catch (error) {
       res.status(500).json({ message: "Can not create message", error });
     }

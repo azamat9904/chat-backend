@@ -1,6 +1,6 @@
 import { createServer } from 'http';
 import createSocket from 'socket.io';
-import app from './routes/app';
+import app from './core/routes';
 import './core/db';
 
 

@@ -2,9 +2,11 @@ import express from "express";
 import dotenv from 'dotenv';
 import bodyParser from "body-parser";
 import { updateLastSeen, checkAuth } from '../midllewares';
-import userRoutes from './User';
-import dialogRoutes from './Dialog';
-import messageRoutes from './Message';
+import {
+    userRoutes,
+    dialogRoutes,
+    messageRoutes
+} from '../routes';
 
 dotenv.config();
 

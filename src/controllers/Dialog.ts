@@ -4,7 +4,7 @@ import { DialogModel, MessageModel } from "../models/index";
 
 
 const getAll = async (req: Request, res: Response) => {
-  const userId = "5f9862e58c82fb203cc72a84";
+  const userId = req.user;
 
   try {
     const dialogs = await DialogModel.find({ author: userId }).populate(['author', 'partner']);

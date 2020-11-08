@@ -62,8 +62,8 @@ const login = async (req: Request, res: Response) => {
     const user = await UserModel.findOne({ email: postData.email });
     const isPasswordCorrect = await bcrypt.compare(postData?.password, user!.password);
 
-    if (isPasswordCorrect) {
-      const token = createJwtToken(postData);
+    if (user && isPasswordCorrect) {
+      const token = createJwtToken(user);
       return res.json({
         status: 'success',
         token

@@ -1,10 +1,10 @@
 import express from 'express';
-import { messageController } from '../controllers/index';
+import Message from '../controllers/Message';
 
-const router = express.Router();
-
-router.get('/', messageController.getAll)
-router.post('/', messageController.createMessage)
-router.delete('/:id', messageController.deleteMessage)
-
-export default router;
+export default (messageController: Message) => {
+    const router = express.Router();
+    router.get('/', messageController.getAll)
+    router.post('/', messageController.createMessage);
+    router.delete('/:id', messageController.deleteMessage);
+    return router;
+}

@@ -1,10 +1,10 @@
 import express from 'express';
-import { dialogController } from '../controllers/index';
+import Dialog from '../controllers/Dialog';
 
-const router = express.Router();
-
-router.get('/', dialogController.getAll);
-router.post('/', dialogController.createDialog);
-router.delete('/:id', dialogController.deleteDialog);
-
-export default router;
+export default (dialogController: Dialog) => {
+    const router = express.Router();
+    router.get('/', dialogController.getAll);
+    router.post('/', dialogController.createDialog);
+    router.delete('/:id', dialogController.deleteDialog);
+    return router;
+}

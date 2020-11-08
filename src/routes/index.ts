@@ -1,3 +1,3 @@
-export { default as userRoutes } from './User';
-export { default as dialogRoutes } from './Dialog';
-export { default as messageRoutes } from './Message';
+export { default as getUserRoutes } from './User';
+export { default as getDialogRoutes } from './Dialog';
+export { default as getMessageRoutes } from './Message';

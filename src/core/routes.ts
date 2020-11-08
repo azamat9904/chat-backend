@@ -1,23 +1,31 @@
-import express from "express";
-import dotenv from 'dotenv';
+import express from 'express';
 import bodyParser from "body-parser";
 import { updateLastSeen, checkAuth } from '../midllewares';
+import socket from "socket.io";
 import {
-    userRoutes,
-    dialogRoutes,
-    messageRoutes
+    getDialogRoutes,
+    getMessageRoutes,
+    getUserRoutes
 } from '../routes';
 
-dotenv.config();
+import {
+    UserController,
+    MessageController,
+    DialogController
+} from '../controllers/index';
 
-const app = express();
 
-app.use(bodyParser.json());
-app.use(updateLastSeen);
-app.use(checkAuth);
 
-app.use("/users", userRoutes);
-app.use('/dialogs', dialogRoutes);
-app.use('/messages', messageRoutes);
+export default (app: express.Express, io: socket.Server) => {
+    const userController = new UserController(io);
+    const dialogController = new DialogController(io);
+    const messageController = new MessageController(io);
 
-export default app;
+    app.use(bodyParser.json());
+    app.use(updateLastSeen);
+    app.use(checkAuth);
+
+    app.use("/users", getUserRoutes(userController));
+    app.use('/dialogs', getDialogRoutes(dialogController));
+    app.use('/messages', getMessageRoutes(messageController));
+};

@@ -80,6 +80,17 @@ const login = async (req: Request, res: Response) => {
       message: "User is not found"
     })
   }
-
 }
-export default { show, createUser, deleteUser, getAll, login };
+
+const getMe = async (req: Request, res: Response) => {
+  const id = req.user?._id;
+  console.log(req.user)
+  try {
+    const user = await UserModel.findOne({ _id: id });
+    res.json(user);
+  } catch {
+    res.status(404).json({ message: "User not found" });
+  }
+}
+
+export default { show, createUser, deleteUser, getAll, login, getMe };

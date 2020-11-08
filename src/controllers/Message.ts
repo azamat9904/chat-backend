@@ -25,7 +25,7 @@ export default class {
 
 
   createMessage = async (req: Request, res: Response) => {
-    const userId = "5f9862e58c82fb203cc72a84";
+    const userId = req.user?._id;
 
     const postData = {
       text: req.body.text,
@@ -38,7 +38,7 @@ export default class {
     try {
       const createdMessage = await message.save();
       res.json({ message: "Message is successfully created", createdMessage });
-      this.io.emit('NEW:MESSAGE', JSON.stringify(createdMessage));
+      this.io.emit('SERVER:NEW_MESSAGE', createdMessage);
     } catch (error) {
       res.status(500).json({ message: "Can not create message", error });
     }

@@ -12,7 +12,7 @@ export default class {
   }
 
   getAll = async (req: Request, res: Response) => {
-    const userId = req.user;
+    const userId = req.user?._id;
     try {
       const dialogs = await DialogModel.find({ author: userId }).populate(['author', 'partner']);
       res.json(dialogs);

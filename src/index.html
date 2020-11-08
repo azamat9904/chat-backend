@@ -13,7 +13,7 @@
     <script>
         const socket = io('http://localhost:4200');
         socket.on('NEW:MESSAGE', (msg) => {
-            console.log('new message ' + msg);
+            console.log(msg);
         })
     </script>
 </body>

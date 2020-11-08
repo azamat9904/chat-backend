@@ -1,3 +1,4 @@
+import socket from 'socket.io';
 import { Server as HttpServer } from 'http';
 import createSocket, { Server as SocketServer } from 'socket.io';
 
@@ -10,8 +11,9 @@ export default class {
     }
 
     createInstance() {
-        const socket = createSocket(this.http);
-        return socket;
+        this.ioInstance = createSocket(this.http);
+        this.socketListener();
+        return this.ioInstance;
     }
 
     getInstance() {
@@ -19,5 +21,11 @@ export default class {
             this.ioInstance = this.createInstance();
         }
         return this.ioInstance;
+    }
+
+    socketListener() {
+        this.ioInstance.on('connection', (socket: socket.Socket) => {
+            console.log('connected');
+        })
     }
 }

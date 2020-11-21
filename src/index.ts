@@ -15,4 +15,6 @@ createRoutes(app, socketInstance);
 
 const port = process.env.PORT || 3000;
 
-http.listen(port);
+http.listen(port, () => {
+    console.log('Started on port ' + port);
+});

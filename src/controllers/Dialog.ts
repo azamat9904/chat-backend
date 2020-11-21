@@ -14,7 +14,15 @@ export default class {
   getAll = async (req: Request, res: Response) => {
     const userId = req.user?._id;
     try {
-      const dialogs = await DialogModel.find({ author: userId }).populate(['author', 'partner']);
+      const dialogs = await DialogModel.find()
+        .or([{ author: userId }, { partner: userId }])
+        .populate(['author', 'partner'])
+        .populate({
+          path: 'lastMessage',
+          populate: {
+            path: 'user',
+          },
+        })
       res.json(dialogs);
     } catch (error) {
       res.status(404).json({ message: "Dialogs not found", error });
@@ -36,25 +44,58 @@ export default class {
 
   createDialog = async (req: Request, res: Response) => {
     const postData = {
-      author: req.body.author,
+      author: req.user?._id,
       partner: req.body.partner,
     };
 
-    const dialog = new DialogModel(postData);
+    DialogModel.findOne({
+      author: String(req.user?._id),
+      partner: req.body.partner,
+    }, (err, foundDialog) => {
 
-    try {
-      const createdDialog = await dialog.save();
-      const messageData = {
-        text: req.body.text,
-        dialog: createdDialog._id,
-        user: req.body.author
+      if (err) {
+        return res.status(500).json({
+          status: 'error',
+          message: err,
+        });
       }
-      const message = new MessageModel(messageData);
-      const createdMessage = await message.save();
 
-      res.json({ dialog: createdDialog, message: createdMessage });
-    } catch (error) {
-      res.status(500).json({ message: "Can not create dialog", error });
+      if (foundDialog) {
+        return res.status(403).json({
+          status: 'error',
+          message: 'Такой диалог уже есть',
+        });
+      }
+
+      const dialog = new DialogModel(postData);
+
+      dialog.save().then((dialogObj) => {
+        const message = new MessageModel({
+          text: req.body.text,
+          user: req.user?._id,
+          dialog: dialogObj._id,
+        });
+
+        message.save().then(() => {
+          dialogObj.lastMessage = message._id;
+          dialogObj.save().then(() => {
+            res.json(dialogObj);
+            this.io.emit('SERVER:DIALOG_CREATED', {
+              ...postData,
+              dialog: dialogObj,
+            });
+          });
+        }).catch((reason) => {
+          res.json(reason);
+        });
+
+      }).catch((err) => {
+        res.json({
+          status: 'error',
+          message: err,
+        });
+      });
     }
+    );
   };
 }

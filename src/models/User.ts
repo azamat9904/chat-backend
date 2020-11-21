@@ -1,26 +1,26 @@
-import { Schema, model, Document } from "mongoose";
-import isEmail from "validator/lib/isEmail";
+import mongoose, { Schema, Document } from "mongoose";
 import { generatePasswordHash } from "../utils";
+import differenceInMinutes from "date-fns/differenceInMinutes";
 
 export interface IUser extends Document {
+  _id: Schema.Types.ObjectId,
   email: string;
-  avatar?: string;
   fullname: string;
   password: string;
   confirmed: boolean;
-  confirm_hash?: string;
-  last_seen?: String;
+  avatar: string;
+  confirm_hash: string;
+  last_seen: Date;
+  data?: IUser;
 }
 
-const UserScheme = new Schema(
+const UserSchema: Schema = new Schema(
   {
     email: {
       type: String,
-      required: "Email is required",
-      validate: [isEmail, "Invalid email"],
+      require: "Email address is required",
       unique: true,
     },
-    avatar: String,
     fullname: {
       type: String,
       required: "Fullname is required",
@@ -33,10 +33,10 @@ const UserScheme = new Schema(
       type: Boolean,
       default: false,
     },
+    avatar: String,
     confirm_hash: String,
     last_seen: {
-      type: String,
-      required: false
+      type: Date
     },
   },
   {
@@ -44,7 +44,15 @@ const UserScheme = new Schema(
   }
 );
 
-UserScheme.pre<IUser>('save', async function (next) {
+UserSchema.virtual("isOnline").get(function (this: any) {
+  return differenceInMinutes(new Date(), this.last_seen) < 5;
+});
+
+UserSchema.set("toJSON", {
+  virtuals: true,
+});
+
+UserSchema.pre<IUser>("save", async function (next) {
   const user = this;
 
   if (!user.isModified("password")) {
@@ -55,6 +63,6 @@ UserScheme.pre<IUser>('save', async function (next) {
   user.confirm_hash = await generatePasswordHash(new Date().toString());
 });
 
-const User = model<IUser>("User", UserScheme);
+const UserModel = mongoose.model<IUser>("User", UserSchema);
 
-export default User;
+export default UserModel;

@@ -3,6 +3,9 @@ import { UserModel } from "../models/index";
 import createJwtToken from "../utils/createJwtToken";
 import bcrypt from 'bcrypt';
 import socket from 'socket.io';
+import { validationResult, Result, ValidationError } from "express-validator";
+import User from "../routes/User";
+import { has } from "lodash";
 
 export default class {
 
@@ -31,6 +34,10 @@ export default class {
       fullname: req.body.fullname,
       password: req.body.password,
     };
+    const errors: Result<ValidationError> = validationResult(req);
+
+    if (!errors.isEmpty())
+      res.status(422).json({ errors: errors.array() });
 
     const user = new UserModel(postData);
 
@@ -72,6 +79,12 @@ export default class {
       email: req.body.email,
       password: req.body.password
     }
+
+    const errors: Result<ValidationError> = validationResult(req);
+
+    if (!errors.isEmpty())
+      res.status(422).json({ errors: errors.array() });
+
     try {
       const user = await UserModel.findOne({ email: postData.email });
       const isPasswordCorrect = await bcrypt.compare(postData?.password, user!.password);
@@ -96,6 +109,51 @@ export default class {
     }
   }
 
+  verify = (req: Request, res: Response): void => {
+    const hash = (req.query.hash);
+
+    if (!hash) {
+      res.status(422).json({ errors: "Invalid hash" });
+      return;
+    }
+
+    UserModel.findOne({ confirm_hash: String(hash) }, (err: any, user: any) => {
+      if (err || !user) {
+        return res.status(404).json({
+          status: "error",
+          message: "Hash not found",
+        });
+      }
+
+      user.confirmed = true;
+
+      user.save((err: any) => {
+        if (err) {
+          return res.status(404).json({
+            status: "error",
+            message: err,
+          });
+        }
+
+        res.json({
+          status: "success",
+          message: "Аккаунт успешно подтвержден!",
+        });
+      });
+    });
+  };
+
+  findUser = async (req: Request, res: Response) => {
+    const fullnameOrEmail = req.query.query;
+    const regex = new RegExp(String(fullnameOrEmail), 'i');
+
+    try {
+      const users = await UserModel.find().or([{ fullname: regex }, { email: regex }]);
+      res.json(users);
+    } catch (e) {
+      res.status(500).json({ error: "Server error", details: e });
+    }
+  }
 
   getMe = async (req: Request, res: Response) => {
     const id = req.user?._id;

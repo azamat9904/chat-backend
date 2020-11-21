@@ -9,6 +9,7 @@ export default async (
 ) => {
     if (
         req.path === "/users/login" ||
+        req.path === "/users/verify" ||
         (req.path === "/users" && req.method === "POST")
     ) {
         return next();

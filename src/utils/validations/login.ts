@@ -1,6 +1,3 @@
-import { check, validationResult } from 'express-validator';
+import { check } from 'express-validator';
 
-export default [
-    check('email').isEmail(),
-    check('password').isLength({ min: 5 }),
-]
+export default [check('email').isEmail(), check('password').isLength({ min: 3 })];

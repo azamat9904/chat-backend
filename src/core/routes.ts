@@ -2,6 +2,8 @@ import express from 'express';
 import bodyParser from "body-parser";
 import { updateLastSeen, checkAuth } from '../midllewares';
 import socket from "socket.io";
+import { loginValidation, registerValidation } from '../utils/validations';
+
 import {
     getDialogRoutes,
     getMessageRoutes,
@@ -22,10 +24,10 @@ export default (app: express.Express, io: socket.Server) => {
     const messageController = new MessageController(io);
 
     app.use(bodyParser.json());
-    app.use(updateLastSeen);
     app.use(checkAuth);
+    app.use(updateLastSeen);
 
-    app.use("/users", getUserRoutes(userController));
+    app.use("/users", getUserRoutes(userController, loginValidation, registerValidation));
     app.use('/dialogs', getDialogRoutes(dialogController));
     app.use('/messages', getMessageRoutes(messageController));
 };

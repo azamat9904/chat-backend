@@ -1,30 +1,28 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, Document } from "mongoose";
+import { IDialog } from "./Dialog";
 
+export interface IMessage extends Document {
+    text: string;
+    dialog: IDialog | string;
+    read: boolean;
+}
 
-const messageSchema = new Schema({
-    text: {
-        type: String,
-        required: true
-    },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-        required: true
-    },
-    dialog: {
-        type: Schema.Types.ObjectId,
-        ref: 'Dialog',
-        required: true
-    },
-    unread: {
-        type: Boolean,
-        default: false
-    }
-},
+const MessageSchema = new Schema(
     {
-        timestamps: true
-    })
+        text: { type: String, require: Boolean },
+        dialog: { type: Schema.Types.ObjectId, ref: "Dialog", required: true },
+        user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+        read: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    {
+        timestamps: true,
+        usePushEach: true,
+    }
+);
 
-const Message = model('Message', messageSchema);
+const MessageModel = mongoose.model<IMessage>("Message", MessageSchema);
 
-export default Message;
+export default MessageModel;

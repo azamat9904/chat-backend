@@ -1,6 +1,6 @@
 
 import { Response, Request } from "express";
-import { MessageModel } from "../models/index";
+import { MessageModel, DialogModel } from "../models/index";
 import socket from 'socket.io';
 
 export default class {
@@ -14,17 +14,16 @@ export default class {
 
   getAll = async (req: Request, res: Response) => {
     const dialogId = req.query.dialog;
-    const userId: string = req.user?._id;
 
     try {
-      const messages = await MessageModel.find({ dialog: dialogId }).populate(['dialog']);
+      const messages = await MessageModel.find({ dialog: String(dialogId) }).populate(['dialog', 'user']);
       res.json(messages);
     } catch (error) {
       res.status(404).json({ message: "Messages not found", error });
     }
   };
 
-
+              
   createMessage = async (req: Request, res: Response) => {
     const userId = req.user?._id;
 
@@ -38,7 +37,8 @@ export default class {
 
     try {
       const createdMessage = await message.save();
-      createdMessage.populate('dialog', (err: any, populatedMessage: any) => {
+      await DialogModel.findOneAndUpdate({ _id: postData.dialog }, { lastMessage: createdMessage._id });
+      createdMessage.populate('dialog user', (err: any, populatedMessage: any) => {
         if (err) throw new Error();
         res.json({ message: "Message is successfully created", populatedMessage });
         this.io.emit('SERVER:NEW_MESSAGE', populatedMessage);

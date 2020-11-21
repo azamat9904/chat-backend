@@ -14,16 +14,18 @@ export default class {
 
   getAll = async (req: Request, res: Response) => {
     const dialogId = req.query.dialog;
+    const userId = req.user?._id;
 
     try {
       const messages = await MessageModel.find({ dialog: String(dialogId) }).populate(['dialog', 'user']);
+      await MessageModel.updateMany({ dialog: String(dialogId), user: { $ne: userId } }, { $set: { read: true } });
       res.json(messages);
     } catch (error) {
       res.status(404).json({ message: "Messages not found", error });
     }
   };
 
-              
+
   createMessage = async (req: Request, res: Response) => {
     const userId = req.user?._id;
 
